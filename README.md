@@ -17,45 +17,61 @@ npm install
 
 ## Usage
 
-In order to be able to use the methods in our components you should import them from '@gk-software/component-runtime-rx-event-bus';
+In order to be able to use the methods in our components you should import them from 'reactive-event-bus';
 
 ```python
 import { on, emit, Subscribe } from 'reactive-event-bus';
 
+### Register to events
+
+1st option
 
 on('GetSomethingMessage').subscribe(() => {})
 
+Note: on() returns an observable so you pipe any operator on top of the returned observable.
 on('GetSomethingMessage').pipe(debounceTime(2000))subscribe(() => {})
 
-emit({ type: 'GetSomethingMessage', data: { something: 'someValue'}});
-
-Developers forget to unsubscribe messages
-Naturally we are not machines. 
-So why not create a subscribe decorator that internally automagically unsubscribes
-the all messages in the disconnectedCallback lifecycle ?
+2nd option
+### Developers forget to unsubscribe messages
+Naturally we are not machines. So why not create a subscribe decorator that internally automagically unsubscribes
+the all messages in the destroy lifecycle (disconnectedCallback, ngOnDestroy, componentWillUnmount) ?
 
 @Subscribe('GetSomethingMessage')
  onGetSomething(config) {
   // do something
 }
 
-In case the developer just want to receive the first data of the subscription,
-should pass the option: {once: true}. 
+### Additional options when registering to events
+
+In case the developer just want to receive the first data of the subscription,should pass the option: {once: true}. 
 So after the first subscription, is automatically unsubscribed.
+
+on('GetSomethingMessage', {once: true})).subscribe(() => {})
+
+or
 
 @Subscribe('GetSomethingMessage', {once: true})
   onGetConfigsDetails(config: any) {
    // do something
 }
 
-In case the developer want to preserve the state of the messages,
- so even if you emit before of the subscribe and you want to get the data, 
-should pass the option: { state: true }, so it will save the state of the message for the futures subscribers.
+In case the developer want to preserve the state of the messages,so even if you emit before of the subscribe and you want to get the data, should pass the option: { state: true }.
+Therefore, it will save the state of the message for the futures subscribers.
+
+
+on('GetSomethingMessage', {state: true})).subscribe(() => {})
+
+or 
 
 @Subscribe('GetSomethingMessage', {state: true})
   onGetSomething(config) {
    // do something
 }
+```
+
+## Tests
+```python
+npm run test
 ```
 
 ## Contributing
