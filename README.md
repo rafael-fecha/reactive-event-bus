@@ -22,7 +22,7 @@ In order to be able to use the methods in our components you should import them 
 ```python
 import { on, emit, Subscribe } from 'reactive-event-bus';
 
-### Register to events
+1. Register to events
 
 1st option
 
@@ -32,16 +32,19 @@ Note: on() returns an observable so you pipe any operator on top of the returned
 on('GetSomethingMessage').pipe(debounceTime(2000))subscribe(() => {})
 
 2nd option
-### Developers forget to unsubscribe messages
+
+Motivation for this option: Developers forget to unsubscribe messages
 Naturally we are not machines. So why not create a subscribe decorator that internally automagically unsubscribes
-the all messages in the destroy lifecycle (disconnectedCallback, ngOnDestroy, componentWillUnmount) ?
+the all messages in the destroy lifecycle disconnectedCallback/ngOnDestroy/componentWillUnmount (depending in which framework is being used) ?
+
+The good thing about this option is that the developer does not need to handle the unsubscription of the event as it happens with the on().
 
 @Subscribe('GetSomethingMessage')
  onGetSomething(config) {
   // do something
 }
 
-### Additional options when registering to events
+1.1. Additional options when registering to events
 
 In case the developer just want to receive the first data of the subscription,should pass the option: {once: true}. 
 So after the first subscription, is automatically unsubscribed.
@@ -51,7 +54,7 @@ on('GetSomethingMessage', {once: true})).subscribe(() => {})
 or
 
 @Subscribe('GetSomethingMessage', {once: true})
-  onGetConfigsDetails(config: any) {
+  onGetSomething(config) {
    // do something
 }
 
@@ -67,6 +70,10 @@ or
   onGetSomething(config) {
    // do something
 }
+
+2. Dispatching events
+
+emit({ type: 'GetSomethingMessage', data: { something: 'someValue'} })
 ```
 
 ## Tests
