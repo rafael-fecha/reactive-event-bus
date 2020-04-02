@@ -24,14 +24,14 @@ import { on, emit, Subscribe } from 'reactive-event-bus';
 
 1. Register to events
 
-1st option
+Option 1
 
 on('GetSomethingMessage').subscribe(() => {})
 
 Note: on() returns an observable so you pipe any operator on top of the returned observable.
 on('GetSomethingMessage').pipe(debounceTime(2000))subscribe(() => {})
 
-2nd option
+Option 2
 
 Motivation for this option: Developers forget to unsubscribe messages
 Naturally we are not machines. So why not create a subscribe decorator that internally automagically unsubscribes
@@ -85,6 +85,3 @@ npm run test
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
