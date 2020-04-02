@@ -21,13 +21,15 @@ In order to be able to use the methods in our components you should import them 
 
 ```python
 import { on, emit, Subscribe } from 'reactive-event-bus';
+```
 
 1. Register to events
 
 Option 1
 
+```python
 on('GetSomethingMessage').subscribe(() => {})
-
+```
 Note: on() returns an observable so you pipe any operator on top of the returned observable.
 on('GetSomethingMessage').pipe(debounceTime(2000))subscribe(() => {})
 
@@ -39,16 +41,19 @@ the all messages in the destroy lifecycle disconnectedCallback/ngOnDestroy/compo
 
 The good thing about this option is that the developer does not need to handle the unsubscription of the event as it happens with the on().
 
+```python
 @Subscribe('GetSomethingMessage')
  onGetSomething(config) {
   // do something
 }
+```
 
 1.1. Additional options when registering to events
 
 In case the developer just want to receive the first data of the subscription,should pass the option: {once: true}. 
 So after the first subscription, is automatically unsubscribed.
 
+```python
 on('GetSomethingMessage', {once: true})).subscribe(() => {})
 
 or
@@ -58,10 +63,13 @@ or
    // do something
 }
 
+```
+
 In case the developer want to preserve the state of the messages,so even if you emit before of the subscribe and you want to get the data, should pass the option: { state: true }.
 Therefore, it will save the state of the message for the futures subscribers.
 
 
+```python
 on('GetSomethingMessage', {state: true})).subscribe(() => {})
 
 or 
@@ -70,10 +78,12 @@ or
   onGetSomething(config) {
    // do something
 }
+```
 
 2. Dispatching events
-
+```python
 emit({ type: 'GetSomethingMessage', data: { something: 'someValue'} })
+```
 ```
 
 ## Tests
