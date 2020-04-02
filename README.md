@@ -84,7 +84,6 @@ or
 ```python
 emit({ type: 'GetSomethingMessage', data: { something: 'someValue'} })
 ```
-```
 
 ## Tests
 ```python
