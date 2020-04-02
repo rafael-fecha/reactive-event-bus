@@ -1,6 +1,6 @@
 # Reactive Event Bus
 
-Reactive Event Bus is a javascript library event bus.
+Reactive Event Bus is a typescript library event bus.
 
 ## Motivation
 Imagine having a large scale application containing a lot of components interacting with each other, and we want a way to make your components communicate while maintaining loose coupling and separation of concerns principles. The Event Bus pattern can be a good solution for our problem.
@@ -75,6 +75,19 @@ on('GetSomethingMessage', {state: true})).subscribe(() => {})
 or 
 
 @Subscribe('GetSomethingMessage', {state: true})
+  onGetSomething(config) {
+   // do something
+}
+```
+
+In case the developer want to emit the first value and then ignore emitted values for a specified duration should pass the option: { throttleTime: durationTime }.
+
+```python
+on('GetSomethingMessage', { throttleTime: 1000 })).subscribe(() => {})
+
+or 
+
+@Subscribe('GetSomethingMessage', { throttleTime: 1000 })
   onGetSomething(config) {
    // do something
 }

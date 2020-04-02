@@ -48,7 +48,6 @@ export class RxEventBus {
    * @param {MessageInstance} message - message that the user want to populate a new value for the subscribers.
    */
   emit(message: { type: string; data: unknown }): void {
-    debugger;
     const messageType: string = message.type;
     RxEventBus.subject$.next({ type: messageType, data: message.data });
 
@@ -73,7 +72,6 @@ export class RxEventBus {
    * @param {IDecoratorSubscribeOptions} options - options.
    */
   on(messageType: string, options?: IDecoratorSubscribeOptions): Observable<any> {
-    debugger;
     const $obs = options?.state
       ? statefullObservable(RxEventBus.behaviorSubject$, messageType)
       : statelessObservable(RxEventBus.subject$, messageType);
@@ -97,7 +95,6 @@ export class RxEventBus {
    * @returns {MessagesDataState | MessagesDataState[]} - The message value or list of messages values.
    */
   getMessageValues(messageType?: string): MessagesDataState[] | undefined {
-    debugger;
     if (messageType) {
       const messageData: MessagesDataState = filterDesiredMessage(messageType, RxEventBus.behaviorSubject$.value);
       if (messageData) {

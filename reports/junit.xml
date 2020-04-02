@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="7" failures="0" time="99.244">
-  <testsuite name="Subscribe decorator" errors="0" failures="0" skipped="0" timestamp="2020-04-02T15:02:13" time="97.447" tests="2">
-    <testcase classname="Subscribe decorator subscription in connectedCallback" name="Subscribe decorator subscription in connectedCallback" time="0.013">
+<testsuites name="jest tests" tests="7" failures="0" time="77.366">
+  <testsuite name="Rx Event Bus Class" errors="0" failures="0" skipped="0" timestamp="2020-04-02T16:31:45" time="75.2" tests="5">
+    <testcase classname="Rx Event Bus Class get rx event bus instance" name="Rx Event Bus Class get rx event bus instance" time="0.004">
     </testcase>
-    <testcase classname="Subscribe decorator unsubscription in disconnectedCallback" name="Subscribe decorator unsubscription in disconnectedCallback" time="0.003">
+    <testcase classname="Rx Event Bus Class basic emit subscribe" name="Rx Event Bus Class basic emit subscribe" time="0.003">
+    </testcase>
+    <testcase classname="Rx Event Bus Class subscribe with once option" name="Rx Event Bus Class subscribe with once option" time="0.002">
+    </testcase>
+    <testcase classname="Rx Event Bus Class subscribe with state option" name="Rx Event Bus Class subscribe with state option" time="0.001">
+    </testcase>
+    <testcase classname="Rx Event Bus Class get message latest value" name="Rx Event Bus Class get message latest value" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="Rx Event Bus Class" errors="0" failures="0" skipped="0" timestamp="2020-04-02T15:02:13" time="97.495" tests="5">
-    <testcase classname="Rx Event Bus Class get rx event bus instance" name="Rx Event Bus Class get rx event bus instance" time="0.008">
+  <testsuite name="Subscribe decorator" errors="0" failures="0" skipped="0" timestamp="2020-04-02T16:31:45" time="75.208" tests="2">
+    <testcase classname="Subscribe decorator subscription in connectedCallback" name="Subscribe decorator subscription in connectedCallback" time="0.007">
     </testcase>
-    <testcase classname="Rx Event Bus Class basic emit subscribe" name="Rx Event Bus Class basic emit subscribe" time="0.005">
-    </testcase>
-    <testcase classname="Rx Event Bus Class subscribe with once option" name="Rx Event Bus Class subscribe with once option" time="0.009">
-    </testcase>
-    <testcase classname="Rx Event Bus Class subscribe with state option" name="Rx Event Bus Class subscribe with state option" time="0.003">
-    </testcase>
-    <testcase classname="Rx Event Bus Class get message latest value" name="Rx Event Bus Class get message latest value" time="0.003">
+    <testcase classname="Subscribe decorator unsubscription in disconnectedCallback" name="Subscribe decorator unsubscription in disconnectedCallback" time="0.001">
     </testcase>
   </testsuite>
 </testsuites>
