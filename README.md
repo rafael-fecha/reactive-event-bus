@@ -35,6 +35,8 @@ on('GetSomethingMessage').pipe(debounceTime(2000))subscribe(() => {})
 
 Option 2
 
+**NOTE: To use this option you must have declared on your component file the lifecycles which will be overriden by the decorator: (React - componentDidMount/componentWillUnmount, Angular - ngOnInit/ngOnDestroy, VanillaCustomElement/StencilJS - connectedCallback/disconnectedCallback).**
+
 Motivation for this option: Developers forget to unsubscribe messages
 Naturally we are not machines. So why not create a subscribe decorator that internally automagically unsubscribes
 the all messages in the destroy lifecycle disconnectedCallback/ngOnDestroy/componentWillUnmount (depending in which framework is being used) ?
@@ -56,7 +58,7 @@ So after the first subscription, is automatically unsubscribed.
 ```python
 on('GetSomethingMessage', {once: true})).subscribe(() => {})
 
-or
+# or
 
 @Subscribe('GetSomethingMessage', {once: true})
   onGetSomething(config) {
@@ -85,7 +87,7 @@ In case the developer want to emit the first value and then ignore emitted value
 ```python
 on('GetSomethingMessage', { throttleTime: 1000 })).subscribe(() => {})
 
-or 
+# or 
 
 @Subscribe('GetSomethingMessage', { throttleTime: 1000 })
   onGetSomething(config) {
