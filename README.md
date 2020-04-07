@@ -1,6 +1,11 @@
-# Reactive Event Bus
+<p align="center">
+  <img width="300" height="300" src="https://i.ibb.co/QMSFRHY/pinterest-profile-image.png">
+</p>
 
-Reactive Event Bus is a typescript library event bus.
+## What is it ?
+
+Reactive Event Bus is a typescript publish/subscribe event bus powered with RXJS. **Allows to get events data from the past (subscribing after emitting !) and provides options for automatic events unsubscriptions :star:**
+
 
 ## Motivation
 Imagine having a large scale application containing a lot of components interacting with each other, and we want a way to make your components communicate while maintaining loose coupling and separation of concerns principles. The Event Bus pattern can be a good solution for our problem.
@@ -12,10 +17,11 @@ Implementing an Event Bus pattern can be beneficial for our code base as it help
 ## Installation
 
 ```bash
-npm install
+npm install reactive-event-bus
+yarn add reactive-event-bus
 ```
 
-## Usage
+## :rocket:  Usage
 
 In order to be able to use the methods in our components you should import them from 'reactive-event-bus';
 
@@ -23,23 +29,25 @@ In order to be able to use the methods in our components you should import them 
 import { on, emit, Subscribe } from 'reactive-event-bus';
 ```
 
-1. Register to events
+**Registering events**
 
 Option 1
 
 ```python
 on('GetSomethingMessage').subscribe(() => {})
 ```
-Note: on() returns an observable so you pipe any operator on top of the returned observable.
+**Note:** on() returns an observable so you pipe any operator on top of the returned observable.
 on('GetSomethingMessage').pipe(debounceTime(2000))subscribe(() => {})
+
+-----------------------------------------------------------------------------------------------------------------------------
 
 Option 2
 
-**NOTE: To use this option you must have declared on your component file the lifecycles which will be overriden by the decorator: (React - componentDidMount/componentWillUnmount, Angular - ngOnInit/ngOnDestroy, VanillaCustomElement/StencilJS - connectedCallback/disconnectedCallback).**
+**NOTE:** To use this option you must have declared on your component file the lifecycles which will be overriden by the decorator: (React - componentDidMount/componentWillUnmount, Angular - ngOnInit/ngOnDestroy, VanillaCustomElement/StencilJS - connectedCallback/disconnectedCallback).
 
 Motivation for this option: Developers forget to unsubscribe messages
-Naturally we are not machines. So why not create a subscribe decorator that internally automagically unsubscribes
-the all messages in the destroy lifecycle disconnectedCallback/ngOnDestroy/componentWillUnmount (depending in which framework is being used) ?
+Naturally we are not machines. **So why not create a subscribe decorator that internally automagically unsubscribes
+the all messages** in the destroy lifecycle disconnectedCallback/ngOnDestroy/componentWillUnmount (depending in which framework is being used) ?
 
 The good thing about this option is that the developer does not need to handle the unsubscription of the event as it happens with the on().
 
@@ -50,7 +58,7 @@ The good thing about this option is that the developer does not need to handle t
 }
 ```
 
-1.1. Additional options when registering to events
+**Additional options when registering to events**
 
 In case the developer just want to receive the first data of the subscription,should pass the option: {once: true}. 
 So after the first subscription, is automatically unsubscribed.
@@ -74,7 +82,7 @@ Therefore, it will save the state of the message for the futures subscribers.
 ```python
 on('GetSomethingMessage', {state: true})).subscribe(() => {})
 
-or 
+# or 
 
 @Subscribe('GetSomethingMessage', {state: true})
   onGetSomething(config) {
@@ -95,7 +103,7 @@ on('GetSomethingMessage', { throttleTime: 1000 })).subscribe(() => {})
 }
 ```
 
-2. Dispatching events
+**Dispatching events**
 ```python
 emit({ type: 'GetSomethingMessage', data: { something: 'someValue'} })
 ```
@@ -103,9 +111,10 @@ emit({ type: 'GetSomethingMessage', data: { something: 'someValue'} })
 ## Tests
 ```python
 npm run test
+yarn test
 ```
 
-## Contributing
+## :metal:  Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
