@@ -1,6 +1,6 @@
 {
   "name": "reactive-event-bus",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "event bus with rxjs",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -37,5 +37,9 @@
     "rxjs": "^6.5.4"
   },
   "author": "Rafael Fecha",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rafael-fecha/reactive-event-bus.git"
+  }
 }
