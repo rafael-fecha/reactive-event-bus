@@ -21,6 +21,9 @@ npm install reactive-event-bus
 yarn add reactive-event-bus
 ```
 
+## :computer:  CodeSandbox Example
+https://codesandbox.io/s/nervous-moon-79gh2?file=/src/App.tsx
+
 ## :rocket:  Usage
 
 In order to be able to use the methods in our components you should import them from 'reactive-event-bus';
